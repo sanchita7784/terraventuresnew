@@ -426,6 +426,8 @@
           data: JSON.stringify(formData), 
           dataType: 'json', 
           success: function(response) {
+              response['msg'] = response['msg'] || "Email Sent";
+
               $("#successMessage").find(".content").html(response['msg']);
               $("#successMessage").css("display", "flex");
               loader.hide();
@@ -433,6 +435,7 @@
               $('#contactForm')[0].reset();
           },
           error: function(xhr, status, error) {              
+              xhr.responseJSON['msg'] = xhr.responseJSON['msg'] || "Unknown Error";
               $("#failMessage").find(".content").html(xhr.responseJSON['msg']);
               $("#failMessage").css("display", "flex");
               loader.hide();
