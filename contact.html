@@ -411,9 +411,14 @@
 
               $('#contactForm')[0].reset();
           },
-          error: function(xhr, status, error) {              
-              xhr.responseJSON['msg'] = xhr.responseJSON['msg'] || "Unknown Error";
-              $("#failMessage").find(".content").html(xhr.responseJSON['msg']);
+          error: function(xhr, status, error) {
+              var msg = "Unknown Error";
+              if (typeof xhr.responseJSON == "object")              
+              {
+                  msg = xhr.responseJSON['msg'] || "Unknown Error";
+              }
+              
+              $("#failMessage").find(".content").html(msg);
               $("#failMessage").css("display", "flex");
               loader.hide();
           }
