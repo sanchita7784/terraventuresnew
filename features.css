@@ -1,5 +1,5 @@
 
-    .wf-force-outline-none[tabindex="-1"]:focus {
+.wf-force-outline-none[tabindex="-1"]:focus {
       outline: none;
     }
  
@@ -311,8 +311,7 @@
         text-align: center;
       }
     }
-  </style>
-  <style>
+
     html {
       -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
@@ -12477,9 +12476,8 @@
     html.w-mod-js:not(.w-mod-ix3) :is([hero-load], [scroll-item="show"], .marquee-item, .accordion-content, .accordion-divider-vr, [button-icon-left], .button-icon-wrap.left, [cms-image="hover"], .accordion-card, [button-text], .integration-list, .integration-icon, .bento-marquee-list, [button-sm-text], [icon-sm-left], [list-item="show"], [btn-right-text], [btn-left], .dropdown-link-list, .icon, .comparison-item._01, .comparison-item._02, .stat-card._01, .stat-card._02.dark, .stat-card._03, .stat-card._04, .stat-card._05.dark, .feature-bottom-image._01, .feature-bottom-image._02, .bento-box-shadow, .hero-icon, .hero-image, .hero-decoration-image) {
       visibility: hidden !important;
     }
-  </style>
-  <link href="https://fonts.googleapis.com/" rel="preconnect">
-  <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="anonymous">
+
+ 
   
     /* vietnamese */
     @font-face {
@@ -12782,4 +12780,25 @@
         justify-content: center;
     }
 }
-      </style>
+       html.lenis,
+    html.lenis body {
+      height: auto
+    }
+
+    .lenis:not(.lenis-autoToggle).lenis-stopped {
+      overflow: clip
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain
+    }
+
+    .lenis.lenis-smooth iframe {
+      pointer-events: none
+    }
+
+    .lenis.lenis-autoToggle {
+      transition-property: overflow;
+      transition-duration: 1ms;
+      transition-behavior: allow-discrete
+    }
