@@ -22,10 +22,11 @@ class User extends BaseModel
         if (isset($data['password']))
         {
             $info = password_get_info($data['password']);
+            
 
             if (!$info['algo'])
             {
-                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);                
             }
         }
 

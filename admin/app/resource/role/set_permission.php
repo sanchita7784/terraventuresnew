@@ -16,8 +16,9 @@ $form = new Form($model);
 if (isset($_POST['form_data']))
 {
     // d($_POST['form_data']); exit;
+    $role_id = $_POST['form_data']['role_id'];
 
-    $model->mysql->query("DELETE FROM permission where role_id=" . $_POST['form_data']['role_id']);
+    $model->mysql->query("DELETE FROM permission where role_id=" . $role_id);
 
     foreach($_POST['form_data']['permission'] as $permission_link => $val)
     {
@@ -28,7 +29,7 @@ if (isset($_POST['form_data']))
     }
 
     $cache = new Cache("auth");
-    $cache->delete("allowedPermissions");
+    $cache->delete("allowedPermissions.$role_id");
 
     Session::writeFlash("success", "Permission has been saved.");
     redirect("role/set_permission");

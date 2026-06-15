@@ -55,7 +55,7 @@ class FileUtility implements File
        }
        
        //creating folder
-       $dest_path = self::removePathSlashs($dest_path);
+       $dest_path = trim($dest_path, "/");
        $dest_path .=  "/";
        
        self::createFolder($dest_path);
@@ -183,5 +183,21 @@ class FileUtility implements File
        }    
        
        return $files;
+   }
+
+   public static function moveFile(String $file, String $dest_path)
+   {
+        $filename = basename($file);
+        
+        FileUtility::createFolder($dest_path);
+
+        $new_file_name = self::getAutoincreamentFileName(pathinfo($filename, PATHINFO_FILENAME), pathinfo($filename, PATHINFO_EXTENSION), $dest_path);
+
+        if ( rename($file, $dest_path . "/" . $new_file_name) ) 
+        {
+            return $dest_path . "/" . $new_file_name;
+        }
+
+        return false;
    }
 }

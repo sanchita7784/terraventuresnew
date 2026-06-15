@@ -17,7 +17,7 @@ class Auth
         "register_verify",
         "logout",
         "role/ajax_get_permission",
-        "transaction/phonepay_redirect"
+        "change_password"
     ];
 
     public $allowedPermissionForAdmin = [
@@ -110,14 +110,16 @@ class Auth
     {
         $cache = new Cache("auth");
 
-        $this->allowedPermissions = $cache->get("allowedPermissions");
+        $role_id = $this->user['role_id'];
+
+        $this->allowedPermissions = $cache->get("allowedPermissions.$role_id");
 
         if (!$this->allowedPermissions)
         {
             $permission = new Permission();
             $this->allowedPermissions = $permission->findList("id", "permission_link", ["role_id" => $this->user['role_id']]);
 
-            $cache->put("allowedPermissions", $this->allowedPermissions);
+            $cache->put("allowedPermissions.$role_id", $this->allowedPermissions);
         }
 
         return $this->allowedPermissions;
@@ -133,6 +135,8 @@ class Auth
         {
             $permissions = array_merge($permissions, $this->allowedPermissionForAdmin);
         }
+
+        // d($permissions); exit;
 
         return $permissions;
     }

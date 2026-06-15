@@ -1,5 +1,6 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
+use App\Model\Career;
 
 require 'vendor/autoload.php';
 require_once './app/include/functions.php';
@@ -10,6 +11,8 @@ require_once './app/include/Mysql.php';
 require_once './app/include/Session.php';
 require_once './app/include/Cache.php';
 require_once './app/include/config.php';
+require_once './app/Model/BaseModel.php';
+require_once './app/Model/Career.php';
 
 class Api
 {
@@ -22,7 +25,17 @@ class Api
             'phone' => "",
             'service' => "",
             'message' => "",
-        ]
+        ],
+        'career' => [
+            'fname' => "",
+            'lname' => "",
+            'experience' => "",
+            'email' => "",
+            'phone' => "",
+            'role' => "",
+            'sector' => "",
+            "cv" => ""
+        ],
     ];
 
     public function __construct()
@@ -118,7 +131,27 @@ class Api
         
         $this->responseData['msg'] = 'Your message has been sent successfully!';
     }
+
+    public function career()
+    {
+        unset($this->requestData['service_name']);
+
+        $result = FileUtility::moveFile($this->requestData['cv'], "storage/files/career/");
+
+        if (!$result) {
+            throw new Exception("Failed to move CV file");
+        }
+
+        $this->requestData['cv'] = $result;
+        
+        $careerModel = new Career();
+        $careerModel->insert($this->requestData);
+
+        $this->responseData['msg'] = 'Details saved successfully!';
+    }
 }
+
+$mysql = new Mysql(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB);
 
 $api = new Api();
 $api->index();

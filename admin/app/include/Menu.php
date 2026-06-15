@@ -8,13 +8,11 @@ class Menu
 
         $menu[] = Home::get();
 
-        $menu[] = Transaction::get();
-        
+        $menu[] = Career::get();  
+
         $menu[] = System::get();
 
         self::check_for_active($menu, $resource);
-
-        // d($menu); exit;
 
         return $menu;
     }
@@ -114,12 +112,11 @@ class System
 
         $links['links'][] = self::user();
         $links['links'][] = self::role();
-        $links['links'][] = self::payment_gateway();        
-        $links['links'][] = [
-            "title" => "Setting",
-            "r" => "setting",
-            "icon" => "fas fa-key"
-        ];
+        // $links['links'][] = [
+        //     "title" => "Setting",
+        //     "r" => "setting",
+        //     "icon" => "fas fa-key"
+        // ];
 
         return $links;
     }
@@ -175,57 +172,22 @@ class System
 
         return $links;
     }
-
-    public static function payment_gateway()
-    {
-        $links = [
-            "title" => "Payment Gateway",
-            "icon" => "fas fa-money-check-alt",
-            "links" => []
-        ];
-
-        $links['links'][] = [
-            "title" => "Summary",
-            "icon" => "fas fa-th-list",
-            "r" => "payment_gateway/summary"
-        ];
-
-        $links['links'][] = [
-            "title" => "Add",
-            "icon" => "fas fa-plus-circle",
-            "r" => "payment_gateway/save"
-        ];
-
-        return $links;
-    }
 }
 
-class Transaction
+class Career
 {
     public static function get()
     {
         $links = [
-            "title" => "Transaction",
-            "icon" => "fas fa-money-check-alt",
+            "title" => "Career",
+            "icon" => "fas fa-briefcase",
             "links" => []
         ];
 
         $links['links'][] = [
             "title" => "Summary",
-            "icon" => "fas fa-th-list",
-            "r" => "transaction/summary"
-        ];
-
-        $links['links'][] = [
-            "title" => "My Summary",
-            "icon" => "fas fa-th-list",
-            "r" => "transaction/my_summary"
-        ];
-
-        $links['links'][] = [
-            "title" => "Create Payment",
-            "icon" => "fas fa-plus-circle",
-            "r" => "transaction/transfer"
+            "r" => "career/summary",
+            "icon" => "fas fa-th-list"
         ];
 
         return $links;
