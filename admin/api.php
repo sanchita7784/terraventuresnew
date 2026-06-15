@@ -15,8 +15,8 @@ require_once './app/include/Mysql.php';
 require_once './app/include/Session.php';
 require_once './app/include/Cache.php';
 require_once './app/include/config.php';
-require_once './app/Model/BaseModel.php';
-require_once './app/Model/Career.php';
+require_once './app/model/BaseModel.php';
+require_once './app/model/Career.php';
 
 class Api
 {
