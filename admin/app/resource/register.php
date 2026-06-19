@@ -56,7 +56,7 @@ require_once './app/resource/layout/login/head.php';
     <div class="d-flex flex-column h-100">
         <div class="mb-4 mb-md-5 text-center">
             <a href="index.html" class="d-block auth-logo">
-                <img src="assets/images/logo-sm.svg" alt="" height="28"> <span class="logo-txt">Payment Gateway</span>
+                <img src="assets/images/logo-sm.svg" alt="" height="28"> <span class="logo-txt">Terra Ventures</span>
             </a>
         </div>
         <div class="auth-content my-auto">

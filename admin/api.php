@@ -128,6 +128,7 @@ class Api
         $mail->Subject = 'Contact Us from ' . $this->requestData['name'];
 
         $body = "<p><strong>Service:</strong> {$this->requestData['service']}</p>";
+        $body = "<p><strong>Phone:</strong> {$this->requestData['phone']}</p>";
         $body .= "<p><strong>Message:</strong> {$this->requestData['message']}</p>";
 
         $mail->Body = $body;
